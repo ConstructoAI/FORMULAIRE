@@ -247,11 +247,62 @@
         /* Header */
         .header {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
             border-bottom: 2px solid var(--primary-color);
             padding-bottom: 15px;
+        }
+
+        /* Logo Zone */
+        .logo-zone {
+            width: 180px;
+            height: 80px;
+            border: 2px dashed #d1d5db;
+            border-radius: var(--border-radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #fafafa;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .logo-zone:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-color-lighter);
+        }
+
+        .logo-zone.has-logo {
+            border: 1px solid #e5e7eb;
+            background: white;
+        }
+
+        .logo-zone.has-logo:hover {
+            border-color: var(--primary-color);
+        }
+
+        .logo-placeholder {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 9px;
+        }
+
+        .logo-placeholder-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .logo-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        #logoInput {
+            display: none;
         }
 
         .company-info {
@@ -1143,7 +1194,25 @@
             .hide-checkbox {
                 display: none !important;
             }
-            
+
+            /* Logo pour impression */
+            .logo-zone {
+                border: none !important;
+                background: transparent !important;
+            }
+
+            .logo-placeholder {
+                display: none !important;
+            }
+
+            .logo-zone:not(.has-logo) {
+                display: none !important;
+            }
+
+            #logoInput {
+                display: none !important;
+            }
+
             .amount-input, .quantity-input, .header-input, .info-input,
             .item-title-input, .item-details-input, .condition-input, .exclusion-input,
             .category-title-input {
@@ -1314,7 +1383,22 @@
             .company-name {
                 font-size: 14px;
             }
-            
+
+            /* Logo mobile */
+            .logo-zone {
+                width: 150px;
+                height: 65px;
+                margin-bottom: 10px;
+            }
+
+            .logo-placeholder {
+                font-size: 8px;
+            }
+
+            .logo-placeholder-icon {
+                font-size: 20px;
+            }
+
             /* Titre et sous-titre */
             .title {
                 font-size: 20px;
@@ -1685,6 +1769,16 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
+            <!-- Logo Zone -->
+            <div class="logo-zone" id="logoZone" onclick="document.getElementById('logoInput').click()" title="Cliquez pour ajouter votre logo">
+                <div class="logo-placeholder" id="logoPlaceholder">
+                    <div class="logo-placeholder-icon">🏢</div>
+                    <div>Cliquez pour<br>ajouter un logo</div>
+                </div>
+                <img id="logoImage" class="logo-image" style="display: none;" alt="Logo entreprise">
+            </div>
+            <input type="file" id="logoInput" accept="image/*" onchange="APP.handleLogoUpload(event)">
+
             <div class="company-info">
                 <div class="company-name">
                     <input type="text" id="nomEntreprise" value="Bâtir Excellence Inc." style="border: none; background: transparent;" placeholder="Nom de l'entreprise" maxlength="100" onchange="APP.autoSave()">
@@ -3238,6 +3332,9 @@
                         const el = document.getElementById('category-' + i);
                         if (el) data.categoryTitles['category-' + i] = el.value;
                     }
+
+                    // Collecter le logo
+                    data.companyLogo = APP.companyLogo;
                 } catch (error) {
                     console.error('Erreur lors de la collecte des données:', error);
                 }
@@ -3726,6 +3823,12 @@
                         });
                     }
 
+                    // Restaurer le logo
+                    if (data.companyLogo) {
+                        APP.companyLogo = data.companyLogo;
+                        APP.displayLogo();
+                    }
+
                     // Restaurer l'état des checkboxes
                     if (data.checkboxes) {
                         const checkboxes = document.querySelectorAll('.hide-checkbox');
@@ -3828,6 +3931,10 @@
                     
                     // Réinitialiser aussi tous les textes (catégories, items, conditions, exclusions)
                     APP.resetTextsWithoutConfirm();
+
+                    // Réinitialiser le logo
+                    APP.companyLogo = null;
+                    APP.displayLogo();
 
                     // Supprimer du localStorage
                     if (APP.utils.isLocalStorageAvailable()) {
@@ -4097,6 +4204,69 @@
                     console.error('Erreur lors de la réinitialisation des montants:', error);
                     APP.utils.showNotification('⚠️ Erreur lors de la réinitialisation des montants', true);
                     APP.utils.showLoading(false);
+                }
+            },
+
+            // Gestion du logo
+            companyLogo: null,
+
+            handleLogoUpload(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                // Vérifier le type de fichier
+                if (!file.type.startsWith('image/')) {
+                    APP.utils.showNotification('⚠️ Veuillez sélectionner une image', true);
+                    return;
+                }
+
+                // Vérifier la taille (max 2MB)
+                if (file.size > 2 * 1024 * 1024) {
+                    APP.utils.showNotification('⚠️ L\'image est trop volumineuse (max 2MB)', true);
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    APP.companyLogo = e.target.result;
+                    APP.displayLogo();
+                    APP.state.isDirty = true;
+                    APP.autoSave();
+                    APP.utils.showNotification('✔ Logo ajouté');
+                };
+                reader.readAsDataURL(file);
+
+                // Réinitialiser l'input
+                event.target.value = '';
+            },
+
+            displayLogo() {
+                const logoZone = document.getElementById('logoZone');
+                const logoPlaceholder = document.getElementById('logoPlaceholder');
+                const logoImage = document.getElementById('logoImage');
+
+                if (APP.companyLogo) {
+                    logoImage.src = APP.companyLogo;
+                    logoImage.style.display = 'block';
+                    logoPlaceholder.style.display = 'none';
+                    logoZone.classList.add('has-logo');
+                    logoZone.title = 'Cliquez pour changer le logo';
+                } else {
+                    logoImage.style.display = 'none';
+                    logoImage.src = '';
+                    logoPlaceholder.style.display = 'block';
+                    logoZone.classList.remove('has-logo');
+                    logoZone.title = 'Cliquez pour ajouter votre logo';
+                }
+            },
+
+            removeLogo() {
+                if (confirm('Voulez-vous supprimer le logo?')) {
+                    APP.companyLogo = null;
+                    APP.displayLogo();
+                    APP.state.isDirty = true;
+                    APP.autoSave();
+                    APP.utils.showNotification('✔ Logo supprimé');
                 }
             },
 
