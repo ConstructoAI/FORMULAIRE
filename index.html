@@ -1819,7 +1819,7 @@
         <!-- Title -->
         <div class="title">SOUMISSION BUDGÉTAIRE</div>
         <div class="subtitle">
-            Soumission #<input type="text" id="numeroSoumission" class="header-input" value="2025-001" style="width: 100px;" maxlength="20" onchange="APP.autoSave()">, 
+            Soumission #<input type="text" id="numeroSoumission" class="header-input" value="2026-001" style="width: 100px;" maxlength="20" onchange="APP.autoSave()">, 
             <input type="date" id="dateSoumission" class="header-input date-input" onchange="APP.autoSave()">
         </div>
 
@@ -3854,7 +3854,7 @@
                     document.getElementById('dateSoumission').value = dateStr;
                     
                     // Numéro de soumission par défaut
-                    const defaultNumber = '2025-001';
+                    const defaultNumber = '2026-001';
                     document.getElementById('numeroSoumission').value = defaultNumber;
                     
                     // Mettre à jour l'affichage des taxes
@@ -4300,7 +4300,7 @@
                     APP.utils.showLoading(true);
                     
                     // Créer le nom du fichier d'abord
-                    const numeroSoumission = document.getElementById('numeroSoumission')?.value || '2025-001';
+                    const numeroSoumission = document.getElementById('numeroSoumission')?.value || '2026-001';
                     const client = (document.getElementById('nomClient')?.value || 'client').replace(/[^a-zA-Z0-9]/g, '');
                     const date = new Date().toISOString().split('T')[0];
                     const fileName = `soumission_${numeroSoumission}_${client}_${date}.html`;
@@ -4373,7 +4373,7 @@ ${document.documentElement.outerHTML}`;
                     console.log('🚀 Début export HTML...');
                     
                     // Créer le nom du fichier
-                    const numero = document.getElementById('numeroSoumission')?.value || '2025-001';
+                    const numero = document.getElementById('numeroSoumission')?.value || '2026-001';
                     const client = (document.getElementById('nomClient')?.value || 'client').replace(/[^a-zA-Z0-9]/g, '');
                     const date = new Date().toISOString().split('T')[0];
                     const fileName = `soumission_${numero}_${client}_${date}.html`;
