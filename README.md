@@ -1,10 +1,30 @@
 # Soumission Budgétaire Interactive
 
-Application web de création de soumissions budgétaires pour le domaine de la construction résidentielle au Québec.
+**Une gracieuseté de [Constructo AI](https://www.constructoai.ca)** - Système ERP intelligent pour la construction au Québec
+
+---
+
+## À propos de Constructo AI
+
+**Constructo AI** est un système de gestion d'entreprise (ERP) de nouvelle génération spécialement conçu pour l'industrie de la construction au Québec. Intégrant l'intelligence artificielle Claude Opus 4.5 avec 61 profils d'experts spécialisés, il offre une solution complète pour gérer tous les aspects d'une entreprise de construction.
+
+### Pourquoi Constructo AI?
+
+- **Multi-Tenant** - Architecture SaaS avec isolation par schéma PostgreSQL
+- **Spécialisation Québec** - 100% conforme RBQ, CCQ, normes CSA/BNQ
+- **IA Avancée** - Claude Opus 4.5 avec 61 experts construction (26K+ lignes)
+- **Complet** - CRM, Projets, Inventaire, Comptabilité, TimeTracker, Production
+- **195+ tables** - Base de données complète et évolutive
+
+🌐 **Site Web** : [www.constructoai.ca](https://www.constructoai.ca)
+📧 **Email** : info@constructoai.ca
+📱 **Téléphone** : (514) 820-1972
+
+---
 
 ## Description
 
-Cette application permet de créer, gérer et exporter des soumissions budgétaires professionnelles. Conçue pour les entrepreneurs en construction, elle offre une interface intuitive avec calculs automatiques des taxes québécoises (TPS/TVQ) et des marges (administration, contingence, profit).
+Cette application gratuite permet de créer, gérer et exporter des soumissions budgétaires professionnelles. Conçue pour les entrepreneurs en construction, elle offre une interface intuitive avec calculs automatiques des taxes québécoises (TPS/TVQ) et des marges (administration, contingence, profit).
 
 ## Fonctionnalités
 
@@ -103,11 +123,27 @@ FORMULAIRE/
 
 ## Auteur
 
-**Sylvain Leduc**
+**Sylvain Leduc** - Fondateur de Constructo AI
 
 ## Licence
 
 © 2025 Constructo AI - Tous droits réservés
+
+---
+
+### Besoin de plus?
+
+Cette application de soumission budgétaire est un aperçu des capacités de **Constructo AI**. Pour une solution complète incluant :
+
+- 🤖 Intelligence artificielle avec 61 experts spécialisés
+- 📊 Gestion de projets (Gantt, Kanban, TimeTracker)
+- 💰 Comptabilité complète (Grand Livre, Paie Québec, États financiers)
+- 👥 CRM et gestion des clients
+- 📦 Inventaire et bons de commande
+- 📋 Module SEAOP gratuit (appels d'offres publics)
+- 🏢 Fonds de prévoyance (Loi 16 Québec)
+
+**Visitez [constructoai.ca](https://www.constructoai.ca) ou appelez le (514) 820-1972**
 
 ---
 
