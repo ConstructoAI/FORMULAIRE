@@ -1200,15 +1200,21 @@
                 display: flex !important;
                 flex-direction: row !important;
                 justify-content: space-between !important;
-                align-items: center !important;
+                align-items: flex-start !important;
+                width: 100% !important;
             }
 
             .company-info {
                 text-align: right !important;
+                flex: 1 !important;
             }
 
             .company-info input {
                 text-align: right !important;
+            }
+
+            .company-info > div {
+                margin-bottom: 1px !important;
             }
 
             .company-info .info-row-split {
