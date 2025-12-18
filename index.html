@@ -1403,6 +1403,20 @@
                 min-width: 70px;
             }
 
+            .company-info .info-row-split {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .company-info .separator {
+                display: none;
+            }
+
+            .company-info .info-item {
+                display: block;
+            }
+
             /* Logo mobile */
             .logo-zone {
                 width: 150px;
@@ -1815,29 +1829,29 @@
                 <div>
                     <input type="text" id="villeEntreprise" value="Laval (Québec) H7M 2K9" style="border: none; background: transparent; width: 100%;" placeholder="Ville, Province, Code postal" maxlength="100" onchange="APP.autoSave()">
                 </div>
-                <div>
-                    <span style="color: #555;">T:</span> 
-                    <input type="text" class="inline" id="telEntreprise" value="450.123.4567" style="border: none; background: transparent; width: 65px;" placeholder="Téléphone" maxlength="20" onchange="APP.autoSave()">
-                    <span style="color: #555; margin: 0 5px;">|</span>
-                    <span style="color: #555;">C:</span> 
-                    <input type="text" class="inline" id="cellEntreprise" value="514.987.6543" style="border: none; background: transparent; width: 65px;" placeholder="Cellulaire" maxlength="20" onchange="APP.autoSave()">
+                <div class="info-row-split">
+                    <span class="info-item"><span style="color: #555;">T:</span>
+                    <input type="text" class="inline" id="telEntreprise" value="450.123.4567" style="border: none; background: transparent; width: 65px;" placeholder="Téléphone" maxlength="20" onchange="APP.autoSave()"></span>
+                    <span class="separator" style="color: #555; margin: 0 5px;">|</span>
+                    <span class="info-item"><span style="color: #555;">C:</span>
+                    <input type="text" class="inline" id="cellEntreprise" value="514.987.6543" style="border: none; background: transparent; width: 65px;" placeholder="Cellulaire" maxlength="20" onchange="APP.autoSave()"></span>
                 </div>
                 <div>
                     <input type="email" id="emailEntreprise" value="info@batirexcellence.ca" style="border: none; background: transparent; width: 100%;" placeholder="Courriel" maxlength="100" onchange="APP.autoSave()">
                 </div>
-                <div>
-                    <span style="color: #555;">RBQ :</span> 
-                    <input type="text" class="inline" id="rbqEntreprise" value="5123-4567-01" style="border: none; background: transparent; width: 75px;" placeholder="RBQ" maxlength="20" onchange="APP.autoSave()">
-                    <span style="color: #555; margin: 0 5px;">|</span>
-                    <span style="color: #555;">NEQ :</span> 
-                    <input type="text" class="inline" id="neqEntreprise" value="1198765432" style="border: none; background: transparent; width: 65px;" placeholder="NEQ" maxlength="20" onchange="APP.autoSave()">
+                <div class="info-row-split">
+                    <span class="info-item"><span style="color: #555;">RBQ :</span>
+                    <input type="text" class="inline" id="rbqEntreprise" value="5123-4567-01" style="border: none; background: transparent; width: 75px;" placeholder="RBQ" maxlength="20" onchange="APP.autoSave()"></span>
+                    <span class="separator" style="color: #555; margin: 0 5px;">|</span>
+                    <span class="info-item"><span style="color: #555;">NEQ :</span>
+                    <input type="text" class="inline" id="neqEntreprise" value="1198765432" style="border: none; background: transparent; width: 65px;" placeholder="NEQ" maxlength="20" onchange="APP.autoSave()"></span>
                 </div>
-                <div>
-                    <span style="color: #555;">TPS:</span> 
-                    <input type="text" class="inline" id="tpsEntreprise" value="123456789RT0001" style="border: none; background: transparent; width: 95px;" placeholder="TPS" maxlength="30" onchange="APP.autoSave()">
-                    <span style="color: #555; margin: 0 5px;">|</span>
-                    <span style="color: #555;">TVQ:</span> 
-                    <input type="text" class="inline" id="tvqEntreprise" value="1234567890TQ0001" style="border: none; background: transparent; width: 105px;" placeholder="TVQ" maxlength="30" onchange="APP.autoSave()">
+                <div class="info-row-split">
+                    <span class="info-item"><span style="color: #555;">TPS:</span>
+                    <input type="text" class="inline" id="tpsEntreprise" value="123456789RT0001" style="border: none; background: transparent; width: 95px;" placeholder="TPS" maxlength="30" onchange="APP.autoSave()"></span>
+                    <span class="separator" style="color: #555; margin: 0 5px;">|</span>
+                    <span class="info-item"><span style="color: #555;">TVQ:</span>
+                    <input type="text" class="inline" id="tvqEntreprise" value="1234567890TQ0001" style="border: none; background: transparent; width: 105px;" placeholder="TVQ" maxlength="30" onchange="APP.autoSave()"></span>
                 </div>
             </div>
         </div>
